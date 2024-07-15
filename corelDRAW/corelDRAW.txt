@@ -1,0 +1,30 @@
+a double click by rectangle         -> rectangle on the whole working space
+a double click by rectangle + shift -> rectangle on the chosen objects
+
+selects(dragging) + alt -> selects all without a whole selecting
+
+###> PLACEMENT ###
+P -> align chosen to the center of the working space
+R L C -> Right Left Center (horizontal)
+T B E -> Top Bottom Equator (vertical)
+shift + P -> horizontal placement chosen objects
+shift + A -> vertical placement chosen objects
+shift + 9(PgUp) -> to the foreground
+shift + 3(PgUp) -> to the background
+###< PLACEMENT ###
+
+###> VIEW ###
+f4 -> show all the objects in the project
+shift + f2 -> zoom in to selected objects much as possible
+f9 -> full screen view
+###< VIEW ###
+
+###> ERGONOMICS ###
+ctrl + R -> repeat the last action
+ctrl + G -> Group
+ctrl + U -> Ungroup
+ctrl + Q -> turn the selected object into the bezier curve
+ctrl + shift + J -> turn the bunch of bezier curves into an object
+f11 -> filling
+f12 -> outline
+###< ERGONOMICS ###

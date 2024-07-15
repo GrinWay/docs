@@ -1,0 +1,8 @@
+###> safe /vendor/symfony/http-kernel/Kernel.php for Kernel::build()
+/vendor/*
+#!/vendor/symfony
+#/vendor/symfony/*
+#!/vendor/symfony/http-kernel
+#/vendor/symfony/http-kernel/*
+#!/vendor/symfony/http-kernel/Kernel.php
+###< safe /vendor/symfony/http-kernel/Kernel.php for Kernel::build()
