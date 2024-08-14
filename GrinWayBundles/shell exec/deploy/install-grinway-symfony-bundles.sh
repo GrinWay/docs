@@ -41,6 +41,8 @@ echo -e "\r\n"
 echo -e "${CONSOLE_TITLE_COLOR}${START_INFO_TEXT}${CONSOLE_NC}"
 echo -e "\r\n"
 
+rm -fr "${PWD}/vendor/grinway"
+
 mkdir "./${BUNDLES_DIR}/${BUNDLE_NAMESPACE}" -p
 cd "./${BUNDLES_DIR}/${BUNDLE_NAMESPACE}"
 
