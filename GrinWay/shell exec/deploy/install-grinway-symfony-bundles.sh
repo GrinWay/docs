@@ -40,8 +40,11 @@ BUNDLE_FULL_NAME[4]="${OWNER_NAMESPACE}/${BUNDLE_NAMES[4]}"
 
 ###< !CHANGE ME! ###
 
+#composer run-script app_init_start
 
 ###> ALGO ###
+
+#composer run-script app_before_init_start_string
 
 ###> INIT STRING ###
 echo -e "\r\n"
@@ -49,14 +52,21 @@ echo -e "${CONSOLE_TITLE_COLOR}${START_INFO_TEXT}${CONSOLE_NC}"
 echo -e "\r\n"
 ###< INIT STRING ###
 
+#composer run-script app_after_init_start_string
+
 ###> REMOVE IF THERE ARE LINKS OR EMPTY DIRECTORIES ###
 rm -fr "${PWD}/vendor/${OWNER_NAMESPACE}"
 ###< REMOVE IF THERE ARE LINKS OR EMPTY DIRECTORIES ###
+
+#composer run-script app_before_mkdir_for_grinway_bundles
 
 ###> MOVE ###
 mkdir "./${DEPENDENCIES_DIR}/${OWNER_NAMESPACE}" -p
 cd "./${DEPENDENCIES_DIR}/${OWNER_NAMESPACE}"
 ###< MOVE ###
+
+#composer run-script app_after_mkdir_for_grinway_bundles
+#composer run-script app_before_grinway_bundles
 
 ###> CYCLE ###
 for k in "${!BUNDLE_NAMES[@]}"
@@ -76,6 +86,8 @@ do
 done
 ###< CYCLE ###
 
+#composer run-script app_after_grinway_bundles
+
 ###> MOVE BACK ###
 cd "../.."
 ###< MOVE BACK ###
@@ -83,10 +95,19 @@ cd "../.."
 ###< ALGO ###
 
 
+#composer run-script app_before_composer_install
+
 composer install
 composer dump-autoload -o
+#composer run-script app_before_symfony_console_assets_install
 php "./bin/console" "assets:install"
+#composer run-script app_before_symfony_console_cache_clear
 php "./bin/console" "cache:clear"
+
+#composer run-script app_before_init_end_string
 
 echo -e "\r\n"
 echo -e "${CONSOLE_TITLE_COLOR}${END_INFO_TEXT}${CONSOLE_NC}"
+
+#composer run-script app_after_init_end_string
+#composer run-script app_init_end
