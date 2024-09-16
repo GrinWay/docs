@@ -98,6 +98,9 @@ cd "../.."
 #composer run-script app_before_composer_install
 
 composer install
+
+#composer run-script app_after_composer_install
+
 composer dump-autoload -o
 #composer run-script app_before_symfony_console_assets_install
 php "./bin/console" "assets:install"
