@@ -1,0 +1,42 @@
+########################################################################### 
+# root/.symfony.local.yaml
+# 
+# https://symfony.com/doc/5.x/setup/symfony_server.html#configuring-workers
+# 
+# runs when "symfony server:start" runs
+########################################################################### 
+#
+# ###> todos ###
+#    set MERCURE_PUBLISHER_JWT_KEY=<PROVIDED VIA GLOBAL ENVIRONMENTS>
+#    set MERCURE_SUBSCRIBER_JWT_KEY=<PROVIDED VIA GLOBAL ENVIRONMENTS>
+#    Don't forget to reload cmd after setting a new environment
+# ###< todos ###
+
+workers:
+    
+    yarn_encore_dev_watch:
+        cmd:
+        -   yarn
+        -   encore
+        -   dev
+        -   '--watch'
+    
+    messenger_consume_all:
+        cmd:
+        -   php
+        -   'bin/console'
+        -   'messenger:consume'
+        -   '--all'
+        -   '--memory-limit=128M'
+        watch:
+        -   config
+        -   src
+        -   templates
+        -   vendor
+        
+    mercure:
+        cmd:
+        -   './mercure.exe'
+        -   'run'
+        -   '--config'
+        -   './dev.Caddyfile'
