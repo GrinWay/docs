@@ -7,19 +7,54 @@
 ########################################################################### 
 #
 # ###> todos ###
+#    (1)
 #    set MERCURE_PUBLISHER_JWT_KEY=<PROVIDED VIA GLOBAL ENVIRONMENTS>
 #    set MERCURE_SUBSCRIBER_JWT_KEY=<PROVIDED VIA GLOBAL ENVIRONMENTS>
 #    Don't forget to reload cmd after setting a new environment
+#    (2)
+#    uncomment and set the correct --server-options-pfx
 # ###< todos ###
 
 workers:
     
-    yarn_encore_dev_watch:
+    ###> 'webpack_dev_server' OR 'yarn_encore_dev_watch' ###
+    # todo: https://symfony.com/doc/5.x/frontend/encore/dev-server.html#enabling-https-using-the-symfony-web-server
+    # adds HMR (Hot Module Replacement)
+    webpack_dev_server:
         cmd:
         -   yarn
-        -   encore
-        -   dev
-        -   '--watch'
+        -   run
+        -   'dev-server'
+        -   '--port'
+        -   8080
+        -   '--client-logging'
+        -   error
+        -   '--hot'
+        -   only
+        ###> todo '--server-type' ###
+        #
+        # symfony server:start --no-tls   => 'http' (and use ngrok to provide an 'https' tunnel)
+        # symfony server:start            => 'https'
+        -   '--server-type'
+        -   http
+        #
+        ###< todo '--server-type' ###
+
+        ###> Symfony: generate ssl files "symfony server:ca:install" ###
+        #
+        #-   '--server-options-pfx'
+        #-   '<ROOT>/.symfony5/certs/default.p12'
+        #
+        ###< Symfony: generate ssl files "symfony server:ca:install" ###
+        -   '--no-client-overlay'
+        -   '--client-reconnect'
+    #yarn_encore_dev_watch:
+    #    cmd:
+    #    -   yarn
+    #    -   encore
+    #    -   dev
+    #    -   '--watch'
+    ###< 'webpack_dev_server' OR 'yarn_encore_dev_watch' ###
     
     messenger_consume_all:
         cmd:
