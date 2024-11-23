@@ -13,6 +13,22 @@
 #    Don't forget to reload cmd after setting a new environment
 #    (2)
 #    uncomment and set the correct --server-options-pfx
+#    (3)
+#    add 'devServer[options.watchFiles], devServer[options.static]' configuration to your 'webpack.config.js'
+#    https://symfony.com/doc/5.x/frontend/encore/dev-server.html#live-reloading-when-changing-php-twig-files
+#    
+#    It'll be something like this:
+#    Encore
+#    
+#      .configureDevServerOptions(options => {
+#          options.static = {
+#              watch: false
+#          }
+#          options.watchFiles = {
+#              paths: ['src/**/*.php', 'templates/**/*'],
+#          }
+#      })
+
 # ###< todos ###
 
 workers:
