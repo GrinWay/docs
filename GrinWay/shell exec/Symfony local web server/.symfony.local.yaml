@@ -62,6 +62,7 @@ workers:
         #-   '<ROOT>/.symfony5/certs/default.p12'
         #
         ###< Symfony: generate ssl files "symfony server:ca:install" ###
+        -   '--live-reload'
         -   '--no-client-overlay'
         -   '--client-reconnect'
     #yarn_encore_dev_watch:
