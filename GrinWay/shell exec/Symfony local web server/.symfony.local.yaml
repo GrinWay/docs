@@ -7,32 +7,20 @@
 ########################################################################### 
 #
 # ###> todos ###
-#    (1)
+#    (1) ENVIRONMENT
 #    set MERCURE_PUBLISHER_JWT_KEY=<PROVIDED VIA GLOBAL ENVIRONMENTS>
 #    set MERCURE_SUBSCRIBER_JWT_KEY=<PROVIDED VIA GLOBAL ENVIRONMENTS>
 #    Don't forget to reload cmd after setting a new environment
-#    (2)
+#    (2) SSL
 #    uncomment and set the correct --server-options-pfx
-#    (3)
-#    add 'devServer[options.watchFiles], devServer[options.static]' configuration to your 'webpack.config.js'
-#    https://symfony.com/doc/5.x/frontend/encore/dev-server.html#live-reloading-when-changing-php-twig-files
-#    
-#    It'll be something like this:
-#    Encore
-#    
-#      .configureDevServerOptions(options => {
-#          options.static = {
-#              watch: false
-#          }
-#          options.watchFiles = {
-#              paths: ['src/**/*.php', 'templates/**/*'],
-#          }
-#      })
-
+#    (3) WEBPACK_DEV_SERVER_SETTINGS
+#    look at, may be useful: https://symfony.com/doc/5.x/frontend/encore/dev-server.html#live-reloading-when-changing-php-twig-files
 # ###< todos ###
+#
 
 workers:
     
+    #############################################################################################
     ###> 'webpack_dev_server' OR 'yarn_encore_dev_watch' ###
     # todo: https://symfony.com/doc/5.x/frontend/encore/dev-server.html#enabling-https-using-the-symfony-web-server
     # adds HMR (Hot Module Replacement)
@@ -47,6 +35,10 @@ workers:
         -   error
         -   '--hot'
         -   only
+        -   '--watch-files'
+        -   'src/**/*.php'
+        -   '--watch-files'
+        -   'templates/**/*'
         ###> todo '--server-type' ###
         #
         # symfony server:start --no-tls   => 'http' (and use ngrok to provide an 'https' tunnel)
@@ -65,6 +57,7 @@ workers:
         -   '--live-reload'
         -   '--no-client-overlay'
         -   '--client-reconnect'
+    #############################################################################################
     #yarn_encore_dev_watch:
     #    cmd:
     #    -   yarn
@@ -72,6 +65,7 @@ workers:
     #    -   dev
     #    -   '--watch'
     ###< 'webpack_dev_server' OR 'yarn_encore_dev_watch' ###
+    #############################################################################################
     
     messenger_consume_all:
         cmd:
