@@ -27,7 +27,7 @@ workers:
     webpack_dev_server:
         cmd:
         -   yarn
-        -   run
+        -   encore
         -   'dev-server'
         -   '--port'
         -   8080
