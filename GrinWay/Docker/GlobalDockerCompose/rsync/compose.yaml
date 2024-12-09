@@ -1,9 +1,0 @@
-services:
-    rsync:
-        build: .
-        container_name: rsync
-        restart: always
-        volumes:
-        -   'C:/Workspace/1_PROJECTS/SYMFONY/__SANDBOX__/drafts:/volumes/drafts'
-        environment:
-            r: '$rsync_to_remote'
