@@ -1,0 +1,15 @@
+# clear && docker kill phpmyadmin && docker rm phpmyadmin && docker compose up -d
+networks:
+    default:
+        name: app
+        driver: bridge
+
+services:
+    phpmyadmin:
+        image: phpmyadmin:5.2.1-apache
+        container_name: phpmyadmin
+        restart: always
+        ports:
+        -    '8080:80'
+        environment:
+        -    PMA_ARBITRARY=1

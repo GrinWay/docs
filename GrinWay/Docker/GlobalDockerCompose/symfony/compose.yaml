@@ -1,12 +1,21 @@
 # clear && docker kill symfony && docker rm symfony && docker rmi symfony-symfony && docker compose up -d
+networks:
+    default:
+        name: app
+        driver: bridge
+
 services:
     symfony:
         build: .
         container_name: symfony
         restart: always
+        #ports:
+        #-   '8100:8000'
+        #-   '7080:7080'
         volumes:
         -   'C:/Workspace/1_PROJECTS/SYMFONY/__SANDBOX__/drafts:/volumes/drafts'
         environment:
             r: '$rsync_to_remote_command'
             s: '$symfony_command'
             t: '$phpunit'
+            GLOBAL_DB_HOST_IP: 'drafts_db'
