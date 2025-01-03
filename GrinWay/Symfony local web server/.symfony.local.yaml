@@ -26,25 +26,27 @@ workers:
     # adds HMR (Hot Module Replacement)
     webpack_dev_server:
         cmd:
-        -   yarn
-        -   encore
-        -   'dev-server'
-        -   '--port'
-        -   8080
-        -   '--client-logging'
-        -   error
-        -   '--hot'
-        -   only
-        -   '--watch-files'
-        -   'src/**/*.php'
-        -   '--watch-files'
-        -   'templates/**/*'
+        - yarn
+        - encore
+        - 'dev-server'
+        - '--port'
+        - 8081
+        - '--client-logging'
+        - error
+        - '--hot'
+        - only
+        - '--watch-files'
+        - 'src/**/*.php'
+        - '--watch-files'
+        - 'templates/**/*'
+        - '--watch-files'
+        - 'assets/controllers.json'
         ###> todo '--server-type' ###
         #
         # symfony server:start --no-tls   => 'http' (and use ngrok to provide an 'https' tunnel)
         # symfony server:start            => 'https'
-        -   '--server-type'
-        -   http
+        - '--server-type'
+        - http
         #
         ###< todo '--server-type' ###
 
@@ -54,9 +56,9 @@ workers:
         #-   '<ROOT>/.symfony5/certs/default.p12'
         #
         ###< Symfony: generate ssl files "symfony server:ca:install" ###
-        -   '--live-reload'
-        -   '--no-client-overlay'
-        -   '--client-reconnect'
+        - '--live-reload'
+        - '--no-client-overlay'
+        - '--client-reconnect'
     #############################################################################################
     #yarn_encore_dev_watch:
     #    cmd:
@@ -69,20 +71,20 @@ workers:
     
     messenger_consume_all:
         cmd:
-        -   php
-        -   'bin/console'
-        -   'messenger:consume'
-        -   '--all'
-        -   '--memory-limit=128M'
+        - php
+        - 'bin/console'
+        - 'messenger:consume'
+        - '--all'
+        - '--memory-limit=128M'
         watch:
-        -   config
-        -   src
-        -   templates
-        -   vendor
-        
+        - config
+        - src
+        - templates
+        - vendor
+
     mercure:
         cmd:
-        -   './mercure.exe'
-        -   'run'
-        -   '--config'
-        -   './dev.Caddyfile'
+        - './mercure.exe'
+        - 'run'
+        - '--config'
+        - './dev.Caddyfile'
